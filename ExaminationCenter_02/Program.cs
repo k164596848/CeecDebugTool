@@ -134,7 +134,7 @@ namespace ExaminationCenter_02
 
 
             //從root中的txt檔中取得路徑並歷遍目錄下的所有檔案(.jpg)
-            String result_path = fullparameter + "\\picture_root.txt";
+            string result_path = fullparameter + "\\picture_root.txt";
             string ReadLine2;
             path = Path.GetFullPath(result_path);
             if (!File.Exists(path))
@@ -144,8 +144,9 @@ namespace ExaminationCenter_02
             }
             else
             {
-                string target_pic_path = @"C:\Users\User\Desktop\輸出檔\英聽\120";
-                System.IO.File.WriteAllText(path, target_pic_path);
+                Console.WriteLine("有讀取picture的根目錄");
+                string target_pic_path = @"C:\Users\User\Desktop\CeecDebugTool\輸出檔\haha";
+                System.IO.File.WriteAllText(path,target_pic_path);
 
                 StreamReader str = new StreamReader(path);
                 ReadLine2 = str.ReadLine();
@@ -319,7 +320,7 @@ namespace ExaminationCenter_02
         }
         //取得空白平均灰度值
         public static double AvgGrayCount;
-        public static int TestingThreshold=230;//用來測試用得threshold
+        public static int TestingThreshold=225;//用來測試用得threshold
         public static void AvgJsonProcessing(String file_path)
         {
             string DeJsonData = File.ReadAllText(file_path);
@@ -379,7 +380,7 @@ namespace ExaminationCenter_02
                 for (int y = 0; y < AnsPaper.Width; y++)
                 {
                     int intensity = (int)AnsPaper[x, y].Intensity; //讀取指定位置的像素值
-                    if (intensity > threshold) sum++;
+                    if (intensity >= threshold) sum++;
                     //sum = sum + intensity; //加總和
                 }
             }
